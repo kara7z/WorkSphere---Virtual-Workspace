@@ -2,17 +2,14 @@
     font-family: DMSans;
     src: url(../DMSans-VariableFont_opsz\,wght.ttf);
 }
-
 @font-face {
     font-family: DMSans-Italic;
     src: url(../DMSans-Italic-VariableFont_opsz\,wght.ttf);
 }
-
 @font-face {
     font-family: Roboto;
     src: url(../RobotoCondensed-VariableFont_wght.ttf);
 }
-
 @font-face {
     font-family: Roboto-Italic;
     src: url(../RobotoCondensed-Italic-VariableFont_wght.ttf);
@@ -64,51 +61,38 @@
     min-height: calc(100vh - 200px);
 }
 
-/* Workspace Container */
+/* Workspace Container - Desktop Layout */
 .Workspace {
     width: 100%;
     height: 70vh;
-    /* add a height so the grid is visible */
     min-height: 500px;
-    /* optional – prevents it from collapsing */
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(3, 1fr);
     gap: 12px;
-    /* nice spacing between cells */
     padding: 16px;
     border: 4px solid black;
     background-color: #1a1a1a;
     border-radius: 16px;
     box-sizing: border-box;
-    z-index: 23;
 }
 
-/* === Individual rooms using grid-column / grid-row === */
+/* Desktop Grid Layout - No Empty Spaces */
 #Staff {
     grid-column: 1 / 3;
     grid-row: 1 / 2;
     background: #9b59b6;
 }
 
-/* col 1-2, row 1 */
-#Empty {
-    grid-column: 3 / 4;
-    grid-row: 1 / 4;
-    background: #333333;
-    opacity: 0.5;
-}
-
-/* tall empty column */
 #Server {
-    grid-column: 4 / 5;
+    grid-column: 3 / 4;
     grid-row: 1 / 2;
     background: #e74c3c;
 }
 
 #Conference {
-    grid-column: 5 / 6;
-    grid-row: 1 / 2;
+    grid-column: 4 / 5;
+    grid-row: 1 / 3;
     background: #3498db;
 }
 
@@ -118,17 +102,15 @@
     background: #2ecc71;
 }
 
-/* col 1-2, row 2-3 (tall) */
-
 #Security {
-    grid-column: 4 / 5;
-    grid-row: 3 / 4;
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
     background: #f1c40f;
     color: #000;
 }
 
 #Archives {
-    grid-column: 5 / 6;
+    grid-column: 3 / 5;
     grid-row: 3 / 4;
     background: #95a5a6;
 }
@@ -144,6 +126,23 @@
     font-size: 1.6rem;
     color: white;
     text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 0.5rem;
+}
+
+.Workspace>div:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    cursor: pointer;
+}
+
+.Workspace>div.active {
+    border: 3px solid white;
+    box-shadow: 0 0 0 3px #3498db;
+}
+.Selected {
+    border: 3px solid white;
+    box-shadow: 0 0 0 3px #3498db;
 }
 
 
@@ -153,19 +152,43 @@
     flex-direction: column;
     gap: 1rem;
     padding: 1rem;
+    background-color: #f5f5f5;
+    border-radius: 12px;
+    border: 2px solid #ddd;
 }
 
-.sidebar img {
+.avatar-placeholder {
     width: 100%;
-    height: auto;
+    height: 200px;
+    background-color: #ddd;
     border: 2px solid #333;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #666;
 }
 
-.sidebar div {
+.user-info {
     font-size: 1.5rem;
     text-align: center;
     padding: 0.5rem;
-    background-color: #f0f0f0;
+    background-color: #e0e0e0;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.room-info {
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 0.5rem;
+    background-color: #d0d0d0;
+    border-radius: 8px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Footer CRUD Menu */
@@ -176,62 +199,167 @@
     z-index: 100;
 }
 
-.rooms {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1.5fr 1.5fr;
-
-    grid-template-rows: repeat(3, 1fr);
-    color: blanchedalmond;
+/* Responsive Design - Tablet */
+@media (max-width: 1024px) {
+    main{
+        padding:2rem 1rem;
+        margin-bottom: 2rem;
+    }
+    .content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .Workspace {
+        height: 60vh;
+        min-height: 400px;
+    }
+    
+    .sidebar {
+        order: -1;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .avatar-placeholder {
+        width: 150px;
+        height: 150px;
+        flex-shrink: 0;
+    }
+    
+    .user-info, .room-info {
+        flex: 1;
+        margin: 0 0.5rem;
+    }
 }
 
-.rooms div {
-    background-color: red;
-}
-
-#room1 {
-    grid-column: 1/2;
-    grid-row: 1/2;
-}
-
-#room2 {}
-
-#room3 {}
-
-#room4 {}
-
-/* Responsive Design */
+/* Responsive Design - Mobile (Compact Layout) */
 @media (max-width: 768px) {
     .content {
         grid-template-columns: 1fr;
         gap: 1rem;
         padding: 0.5rem;
     }
-
-
-
+    
+    .Workspace {
+        height: auto;
+        min-height: 400px;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 10px;
+        padding: 12px;
+    }
+    
+    /* Mobile Grid Layout - No Empty Spaces */
+    #Staff {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+    }
+    
+    #Server {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+    }
+    
+    #Conference {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+    }
+    
+    #Reception {
+        grid-column: 2 / 3;
+        grid-row: 2 / 4;
+    }
+    
+    #Security {
+        grid-column: 1 / 2;
+        grid-row: 3 / 4;
+    }
+    
+    #Archives {
+        grid-column: 1 / 3;
+        grid-row: 4 / 5;
+    }
+    
+    .Workspace>div {
+        font-size: 1.3rem;
+    }
+    
     .Crud li,
     .navBar li {
-        font-size: 1.2rem;
-        padding: 0.3rem;
+        font-size: 1.5rem;
+        padding: 0.4rem;
     }
-
-    .Workspace button {
-        padding: 0.5rem 1rem;
-        font-size: 1rem;
+    
+    .sidebar {
+        flex-direction: column;
+    }
+    
+    .avatar-placeholder {
+        width: 100%;
+        height: 150px;
     }
 }
 
+/* Responsive Design - Small Mobile */
 @media (max-width: 480px) {
-
+    .Workspace {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, 1fr);
+        gap: 8px;
+        padding: 10px;
+        min-height: 500px;
+    }
+    
+    #Staff {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+    }
+    
+    #Server {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+    }
+    
+    #Conference {
+        grid-column: 1 / 2;
+        grid-row: 3 / 4;
+    }
+    
+    #Reception {
+        grid-column: 1 / 2;
+        grid-row: 4 / 5;
+    }
+    
+    #Security {
+        grid-column: 1 / 2;
+        grid-row: 5 / 6;
+    }
+    
+    #Archives {
+        grid-column: 1 / 2;
+        grid-row: 6 / 7;
+    }
+    
+    .Workspace>div {
+        font-size: 1.1rem;
+        padding: 0.5rem;
+    }
+    
     .Crud ul,
     .navBar ul {
         grid-template-columns: repeat(3, 1fr);
         gap: 0.2rem;
     }
-
+    
     .Crud li,
     .navBar li {
         font-size: 1rem;
         padding: 0.5rem 0.2rem;
+    }
+    
+    .sidebar div:last-child {
+        font-size: 1.2rem;
     }
 }
