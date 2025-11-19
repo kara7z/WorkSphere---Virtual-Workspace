@@ -2,6 +2,10 @@ const Workspace = document.querySelector('.Workspace');
 const roomInfo = document.querySelector('.room-info');
 const input = document.getElementById('imageUrlInput');
 const preview = document.getElementById('previewImage');
+const addWorker = document.getElementById('add');
+const form = document.getElementById('Add-Form');
+const SaveWorker = document.getElementById('Save-Worker');
+const Cancel = document.getElementById('Cancel');
 let SelectedItem = null;
 
 
@@ -22,6 +26,14 @@ function updatePreview() {
     }
 }
 updatePreview();
+Cancel.addEventListener('click',(e)=>{
+    e.preventDefault()
+    form.style.display ="none";
+})
+addWorker.addEventListener('click',(e)=>{
+    e.preventDefault()
+    form.style.display ="flex";
+})
 input.addEventListener('input', updatePreview);
 
 Workspace.addEventListener('click', (e) => {
