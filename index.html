@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WorkSphere - Virtual Workspace</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
     <header>
         <nav class="navBar">
@@ -19,7 +21,7 @@
     <main>
         <div class="content">
             <div class="Workspace">
-                <div id="Conference" >
+                <div id="Conference">
                     Conference room
                 </div>
                 <div id="Reception">
@@ -38,11 +40,44 @@
                     Archives room
                 </div>
             </div>
+
             <div class="sidebar">
                 <div class="user-info">passenger</div>
-                <div class="avatar-placeholder"></div>
+                <div class="avatar-placeholder">Unassigned Staff</div>
                 <div class="room-info">Select a room</div>
             </div>
+            <div class="Add-Worker">
+                <form id="Add-Form" action="">
+                    <div style="display: flex;">
+                        <img id="previewImage" alt="Profile img"
+                            style="border:solid black 2px; width:5rem;height: 5rem;  margin-top:10px; border-radius: 50%; margin:0.4rem">
+
+                        <div">
+                            <div style="display: flex;flex-direction: column;">
+                                <label for="first name">first Name:</label>
+                                <input id="fName" type="text" autocomplete=off>
+                            </div>
+                            <div style="display: flex;flex-direction: column;">
+                                <label for="last name">Last Name:</label>
+                                <input id="lName" type="text" autocomplete=off>
+                            </div>
+                    </div>
+                    <div>
+                        <label for="">Role:</label>
+                        <select name="Role" id="Role">
+                            <option value="">Security</option>
+                        </select>
+
+                    </div>
+                    <input type="text" id="imageUrlInput" placeholder="Enter image URL">
+
+
+                    <button>Add Experience</button>
+            </div>
+
+
+            </form>
+        </div>
         </div>
     </main>
     <footer>
@@ -56,4 +91,5 @@
     </footer>
     <script src="js/index.js"></script>
 </body>
+
 </html>
