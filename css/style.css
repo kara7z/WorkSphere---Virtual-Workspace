@@ -167,7 +167,7 @@
     text-align: center;
     font-size: 2rem;
     color:white;
-    display: none;
+    display: flex;
 }
 #previewImage{
     object-fit: cover;

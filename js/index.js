@@ -10,6 +10,7 @@ const Cancel = document.getElementById('Cancel');
 const AddExp = document.getElementById('Add-Exp');
 const AddClose = document.getElementById('AddClose');
 const backdrop = document.querySelector('.backdrop');
+const profileDrop = document.querySelector('.Profile-Drop');
 let SelectedItem = null;
 
 // Array to store workers
@@ -23,6 +24,72 @@ const roomDescriptions = {
     Staff: "Break room for employees to rest and eat.",
     Archives: "Storage room for important files and documents."
 };
+
+// Function to display workers in the Profile-Drop
+function displayWorkers() {
+    profileDrop.innerHTML = '';
+    
+    // If no workers, show a message
+    if (workers.length === 0) {
+        profileDrop.innerHTML += '<div class="N-Staff">Unassigned Staff</div>';
+        return;
+    }
+    
+    // Loop through workers array and create profile cards
+    workers.forEach((worker, index) => {
+        const profileCard = document.createElement('div');
+        profileCard.className = 'passenger-profile';
+        profileCard.dataset.index = index;
+        
+        // Map role codes to display names
+        const roleNames = {
+            'receptionist': 'Receptionist',
+            'it_technician': 'IT Technician',
+            'security_agent': 'Security Agent',
+            'manager': 'Manager',
+            'cleaning': 'Cleaner',
+            'other': 'Other'
+        };
+        
+        profileCard.innerHTML = `
+            <img id="Profile-Img" src="${worker.imageUrl}" alt="Profile img">
+            <div class="Profile">
+                <div class="Profile-Text">
+                    <div style="display: flex;gap:.2rem;">
+                        <span class="left-text">USERNAME:</span>
+                        <h4>${worker.firstName}</h4>
+                        <h4>${worker.lastName}</h4>
+                    </div>
+                </div>
+                <div class="Profile-Role">
+                    <span class="left-text">ROLE:</span>
+                    <h4 class="role">${roleNames[worker.role] || worker.role}</h4>
+                </div>
+            </div>
+            <div id="removeBtn" data-index="${index}">remove</div>
+        `;
+        
+        profileDrop.appendChild(profileCard);
+    });
+    
+    // Add event listeners to all remove buttons
+    const removeButtons = profileDrop.querySelectorAll('#removeBtn');
+    removeButtons.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const index = parseInt(e.target.dataset.index);
+            removeWorker(index);
+        });
+    });
+}
+
+// Function to remove a worker
+function removeWorker(index) {
+    if (confirm('Are you sure you want to remove this worker?')) {
+        workers.splice(index, 1);
+        displayWorkers();
+        console.log('Worker removed. Remaining workers:', workers);
+    }
+}
 
 // img preview
 function updatePreview() {
@@ -301,13 +368,16 @@ SaveWorker.addEventListener('click', (e) => {
             experiences: experiences
         };
 
-        // Add to workers array
+        
         workers.push(worker);
 
-        console.log('Worker saved successfully!', worker);
+        alert('Worker saved successfully!');
         console.log('All workers:', workers);
 
-        // Reset form
+    
+        displayWorkers();
+
+        
         form.reset();
         form.style.display = "none";
         backdrop.style.display = "none";
@@ -319,3 +389,5 @@ SaveWorker.addEventListener('click', (e) => {
         console.log('Form has errors. Please fix them.');
     }
 });
+
+displayWorkers();
