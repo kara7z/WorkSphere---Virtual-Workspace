@@ -19,6 +19,7 @@
         </nav>
     </header>
     <main>
+        <div class="backdrop"></div>
         <div class="content">
             <div class="Workspace">
                 <div id="Conference">
@@ -42,37 +43,77 @@
             </div>
 
             <div class="sidebar">
-                <div class="user-info">passenger</div>
-                <div class="avatar-placeholder">Unassigned Staff</div>
+                <div class="user-info">members:</div>
+                <div class="Passegers-list">
+                    <div class="Profile-Drop">
+                        <div class="N-Staff">Unassigned Staff</div>
+                        <div class="passenger-profile">
+                            <img src="/images/Default_pfp.jpg" alt="Profile img">
+                            <div class="Profile">
+                                <div class="Profile-Text">
+                                    <div style="display: flex;gap:.2rem;">
+                                        <span class="left-text">USERNAME:</span>
+
+                                        <h4>Kara</h4>
+                                        <h4>Oussama</h4>
+                                    </div>
+
+                                </div>
+                                <div class="Profile-Role">
+                                    <span class="left-text">ROLE:</span>
+                                    <h4 class="role">Security</h4>
+                                </div>
+                            </div>
+                            <div id="removeBtn">remove</div>
+
+                        </div>
+                        
+                    </div>
+
+                </div>
+                <li id="add">Add Worker</li>
+
                 <div class="room-info">Select a room</div>
             </div>
             <div class="Add-Worker">
                 <form id="Add-Form" action="">
                     <div style="display: flex; ">
-                        <img id="previewImage" alt="Profile img"
+                        <img src="images/Default_pfp.jpg" id="previewImage" alt="Profile img"
                             style="border:solid black 2px; width:5rem;height: 5rem;  margin-top:10px; border-radius: 50%; margin:0.4rem">
 
                         <div>
                             <div class="FirstName">
-                                <label for="first name">first Name:</label>
+                                <div class="Elem">
+                                    <label for="first name">first Name:</label>
+                                    <div class="Error">Not Allowed</div>
+                                </div>
                                 <input id="fName" type="text" autocomplete=off>
                             </div>
                             <div class="LastName">
-                                <label for="last name">Last Name:</label>
+                                <div class="Elem">
+                                    <label for="last name">Last Name:</label>
+                                    <div class="Error">Not Allowed</div>
+                                </div>
                                 <input id="lName" type="text" autocomplete=off>
                             </div>
                         </div>
                     </div>
                     <div style="display: flex;flex-direction: column; ">
 
-
                         <div style="display: flex;flex-direction: column;">
-                            <label for="first name">Email:</label>
-                            <input id="fName" type="text" autocomplete=off>
+                            <div class="Elem">
+
+                                <label for="Email">Email:</label>
+                                <div class="Error">Not Allowed</div>
+                            </div>
+                            <input id="email" type="text" autocomplete=off>
                         </div>
                         <div style="display: flex;flex-direction: column;">
-                            <label for="last name">Phone Number:</label>
-                            <input id="lName" type="text" autocomplete=off>
+                            <div class="Elem">
+                                <label for="Phone">Phone Number:</label>
+                                <div class="Error">Not Allowed</div>
+                            </div>
+                            <input id="phone" type="tel" autocomplete=off>
                         </div>
 
                     </div>
@@ -95,32 +136,11 @@
                     <div
                         style="display: flex; flex-direction: column; gap: .3rem;background-color: #cecece; padding: .5rem 0.2rem; border-radius: .5rem; box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.304),-1px -1px 3px rgba(0, 0, 0, 0.304);">
                         <div>
-                            <label for="company">company:</label>
-                            <input class="company" type="text" name="company" >
-                        </div>
-                        <div style="display: flex;gap: .2rem; align-items: center;">
-                            <label for="">Role:</label>
-                            <select name="role" id="role" required style="width: 100%;">
-                                <option value="" disabled selected>Select a role</option>
-                                <option value="receptionist">Receptionist </option>
-                                <option value="it_technician">IT Technician</option>
-                                <option value="security_agent">Security Agent</option>
-                                <option value="manager">Manager</option>
-                                <option value="cleaning">Cleaner</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="From">From:</label>
-                            <input type="date">
-                            <label for="From">To:</label>
-                            <input type="date">
-                        </div>
-                    </div>
-                    <button>Add Experience</button>
-                    <div
-                        style="display: flex; flex-direction: column; gap: .3rem;background-color: #cecece; padding: .5rem 0.2rem; border-radius: .5rem; box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.304),-1px -1px 3px rgba(0, 0, 0, 0.304);">
-                        <div >
-                            <label for="company">company:</label>
+                            <div class="Elem">
+                                <label for="company">company:</label>
+
+                                <div class="Error">Not Allowed</div>
+                            </div>
                             <input class="company" type="text" name="company">
                         </div>
                         <div style="display: flex;gap: .2rem; align-items: center;">
@@ -134,16 +154,47 @@
                                 <option value="cleaning">Cleaner</option>
                             </select>
                         </div>
+                        <div class="date-p">
+                            <label for="From">From:</label>
+                            <input type="date">
+                            <label for="From">To:</label>
+                            <input type="date">
+                            <div class="Elem" style="text-align: center;">
+
+                                <div class="Error">Not Allowed</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <button id="Add-Exp" type="button">Add Experience</button>
+                    <div class="add-Exp"
+                        style="display: none; flex-direction: column; gap: .3rem;background-color: #cecece; padding: .5rem 0.2rem; border-radius: .5rem; box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.304),-1px -1px 3px rgba(0, 0, 0, 0.304);">
+                        <div>
+                            <label for="company">company:</label>
+                            <input class="company" type="text" name="company">
+                        </div>
+                        <div style="display: flex;gap: .2rem; align-items: center;">
+                            <label for="">Role:</label>
+                            <select name="role" id="role" style="width: 100%;">
+                                <option value="" disabled selected>Select a role</option>
+                                <option value="receptionist">Receptionist </option>
+                                <option value="it_technician">IT Technician</option>
+                                <option value="security_agent">Security Agent</option>
+                                <option value="manager">Manager</option>
+                                <option value="cleaning">Cleaner</option>
+                            </select>
+                        </div>
                         <div>
                             <label for="From">From:</label>
                             <input type="date">
                             <label for="From">To:</label>
                             <input type="date">
                         </div>
+                        <button id="AddClose" type="button">close</button>
                     </div>
                     <div style="display: grid; gap: .5rem;">
-                        <button id="Save-Worker"style="background-color:black;color: white;font-size: large;">Save Worker</button>
-                        <button id="Cancel" style="background-color: black;color: white;font-size: large;">Cancel</button>
+                        <button id="Save-Worker">Save Worker</button>
+                        <button id="Cancel" type="submit">Cancel</button>
                     </div>
 
 
@@ -155,8 +206,6 @@
     <footer>
         <nav class="Crud">
             <ul>
-                <li id="add">Add Worker</li>
-                <li id="remove">Remove Worker</li>
                 <li id="modify">Modify Worker</li>
             </ul>
         </nav>
