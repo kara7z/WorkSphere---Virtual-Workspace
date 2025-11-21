@@ -81,12 +81,18 @@
     grid-column: 1 / 3;
     grid-row: 1 / 2;
     background: #9b59b6;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 #Server {
     grid-column: 3 / 4;
     grid-row: 1 / 2;
     background: #e74c3c;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 #Conference {
@@ -95,6 +101,7 @@
     display: flex;
     flex-wrap: wrap;
     background: #3498db;
+    align-items: center;
 }
 
 #Reception {
@@ -103,6 +110,7 @@
     background: #2ecc71;
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 #Security {
@@ -110,12 +118,18 @@
     grid-row: 2 / 3;
     background: #f1c40f;
     color: #000;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 #Archives {
     grid-column: 3 / 5;
     grid-row: 3 / 4;
     background: #95a5a6;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 }
 
 .Workspace>div {
@@ -264,7 +278,7 @@ align-items:center;
 }
 
 .add-list-img {
-    width: 3rem;
+    width: 2rem;
     cursor: pointer;
 }
 
@@ -552,11 +566,15 @@ align-items:center;
     #Staff {
         grid-column: 1 / 2;
         grid-row: 1 / 2;
+        gap: .5rem;
+
     }
 
     #Server {
         grid-column: 1 / 2;
         grid-row: 2 / 3;
+        gap: .5rem;
+
     }
 
     #Conference {
@@ -569,16 +587,22 @@ align-items:center;
     #Reception {
         grid-column: 1 / 2;
         grid-row: 4 / 5;
+        gap: .5rem;
+
     }
 
     #Security {
         grid-column: 1 / 2;
         grid-row: 5 / 6;
+        gap: .5rem;
+
     }
 
     #Archives {
         grid-column: 1 / 2;
         grid-row: 6 / 7;
+        gap: .5rem;
+
     }
 
     .Workspace>div {

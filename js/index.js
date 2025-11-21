@@ -146,6 +146,7 @@ Workspace.addEventListener('click', (e) => {
     const clicked = e.target;
 
     if (clicked === Workspace) return;
+    // if (clicked === add-list-img) return;
 
     if (SelectedItem) {
         SelectedItem.classList.remove('Selected');
