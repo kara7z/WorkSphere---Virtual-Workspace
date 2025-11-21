@@ -154,26 +154,31 @@
     border-radius: 12px;
     border: 2px solid #ddd;
 }
-.Profile-Text{
+
+.Profile-Text {
     display: flex;
     gap: .2rem;
     font-weight: normal;
-    
+
 }
-.Profile-Text h4{
+
+.Profile-Text h4 {
     font-size: 1rem;
 }
-.N-Staff{
+
+.N-Staff {
     text-align: center;
     font-size: 2rem;
-    color:white;
+    color: white;
     display: flex;
 }
-#previewImage{
+
+#previewImage {
     object-fit: cover;
     object-position: center;
 }
-#Profile-Img{
+
+#Profile-Img {
     width: 50px;
     height: 50px;
     object-fit: cover;
@@ -182,6 +187,7 @@
     border: black solid 2px;
 
 }
+
 .Passegers-list {
     height: fit-content;
     background-color: #ddd;
@@ -191,12 +197,13 @@
     align-items: center;
     justify-content: center;
     color: #666;
-    background-color: firebrick;
+    background-color: black;
     padding: .5rem;
-    
+
 
 }
-.passenger-profile{
+
+.passenger-profile {
     background-color: #f1c40f;
     width: 100%;
     border-radius: .5rem;
@@ -206,36 +213,51 @@
     font-family: Roboto-Italic;
     border: black 2px solid;
     align-items: center;
-    flex-wrap:wrap ;
+    flex-wrap: wrap;
+    cursor: pointer;
 }
-.Profile{
+
+.passenger-profile:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 0.5rem;
+}
+
+.Profile {
     display: flex;
     flex-direction: column;
     font-size: 1rem;
     color: white;
-    
+
 }
-.Profile-Role{
+
+.Profile-Role {
     display: flex;
     gap: .3rem;
 
 }
-#removeBtn{
+
+#removeBtn {
     margin-left: auto;
     padding: .5rem;
     color: black;
     cursor: pointer;
-} 
-#removeBtn:hover{
-     text-decoration: underline;
-    
-}        
-.role{
+}
+
+#removeBtn:hover {
+    text-decoration: underline;
+
+}
+
+.role {
     font-size: 1rem;
 }
-.left-text{
+
+.left-text {
     color: black;
 }
+
 .user-info {
     font-size: 1.5rem;
     text-align: center;
@@ -261,8 +283,9 @@
     overflow: auto;
     z-index: 999;
     display: none;
-    
+
 }
+
 .Profile-Drop {
     display: flex;
     flex-direction: column;
@@ -270,12 +293,13 @@
     width: 100%;
     max-height: 320px;
     height: auto;
-    overflow-y: auto; 
+    overflow-y: auto;
     overflow-x: hidden;
     align-items: center;
-    justify-content: flex-start; 
+    justify-content: flex-start;
     padding: .5rem 0;
 }
+
 .backdrop {
     position: fixed;
     inset: 0;
@@ -325,12 +349,15 @@
     align-items: center;
     justify-content: center;
 }
-#add{
+
+#add {
     cursor: pointer;
 }
-#add:hover{
+
+#add:hover {
     text-decoration: underline;
 }
+
 .Crud {
     position: fixed;
     bottom: 0;
@@ -342,6 +369,7 @@
     font-size: .8rem;
     display: none;
 }
+
 .success {
     color: #3ce759;
     font-size: .8rem;
@@ -485,7 +513,7 @@
     .Role-Select select {
         width: 14.95rem;
     }
-    
+
 }
 
 /* Small Mobile */
@@ -548,7 +576,8 @@
     .sidebar div:last-child {
         font-size: 1.2rem;
     }
-    .Passegers-list{
+
+    .Passegers-list {
         overflow: auto;
     }
 }

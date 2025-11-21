@@ -13,8 +13,15 @@ const backdrop = document.querySelector('.backdrop');
 const profileDrop = document.querySelector('.Profile-Drop');
 let SelectedItem = null;
 
-// Array to store workers
-let workers = [];
+
+const roleColors = {
+    'receptionist': '#2ecc71',    
+    'it_technician': '#e74c3c',   
+    'security_agent': '#f1c40f', 
+    'manager': '#9b59b6',         
+    'cleaning': '#3498db',        
+    'other': '#95a5a6'           
+};
 
 const roomDescriptions = {
     Conference: "Meeting room for discussions and presentations.",
@@ -25,23 +32,21 @@ const roomDescriptions = {
     Archives: "Storage room for important files and documents."
 };
 
-// Function to display workers in the Profile-Drop
 function displayWorkers() {
     profileDrop.innerHTML = '';
-    
-    // If no workers, show a message
     if (workers.length === 0) {
         profileDrop.innerHTML += '<div class="N-Staff">Unassigned Staff</div>';
         return;
     }
     
-    // Loop through workers array and create profile cards
     workers.forEach((worker, index) => {
         const profileCard = document.createElement('div');
         profileCard.className = 'passenger-profile';
         profileCard.dataset.index = index;
         
-        // Map role codes to display names
+        const roleColor = roleColors[worker.role] || roleColors['other'];
+        profileCard.style.backgroundColor = roleColor;
+        
         const roleNames = {
             'receptionist': 'Receptionist',
             'it_technician': 'IT Technician',
@@ -72,7 +77,6 @@ function displayWorkers() {
         profileDrop.appendChild(profileCard);
     });
     
-    // Add event listeners to all remove buttons
     const removeButtons = profileDrop.querySelectorAll('#removeBtn');
     removeButtons.forEach(btn => {
         btn.addEventListener('click', (e) => {
@@ -82,7 +86,7 @@ function displayWorkers() {
     });
 }
 
-// Function to remove a worker
+// remove a worker
 function removeWorker(index) {
     if (confirm('Are you sure you want to remove this worker?')) {
         workers.splice(index, 1);
@@ -115,26 +119,27 @@ function EventShow(e, area) {
 EventHide(AddClose, AddExpArea);
 EventShow(AddExp, AddExpArea);
 
-
 Cancel.addEventListener('click', () => {
     form.style.display = "none";
     backdrop.style.display = "none";
     AddExpArea.style.display = "none";
     preview.src = "images/Default_pfp.jpg";
-
 })
+
 addWorker.addEventListener('click', (e) => {
     e.preventDefault();
     form.style.display = "flex";
     backdrop.style.display = "block"
     document.body.classList.add('modal-open');
 })
+
 backdrop.addEventListener('click', () => {
     form.style.display = "none";
     backdrop.style.display = "none";
     AddExpArea.style.display = "none";
     preview.src = "images/Default_pfp.jpg";
 });
+
 input.addEventListener('input', updatePreview);
 
 Workspace.addEventListener('click', (e) => {
@@ -188,10 +193,8 @@ const validateForm = () => {
     const email = document.getElementById(`email`);
     const phone = document.getElementById(`phone`);
 
-    // Get all company inputs
     const companies = document.querySelectorAll('.company');
 
-    // Get first experience dates
     const dateInputs1 = document.querySelectorAll('.date-p input[type="date"]');
     const fromDate1 = dateInputs1[0];
     const toDate1 = dateInputs1[1];
@@ -238,7 +241,6 @@ const validateForm = () => {
         valid = false;
     } else setSuccess(phone);
 
-    // Validate first experience (REQUIRED)
     const firstCompany = companies[0];
     const firstCompanyVal = firstCompany.value.trim();
 
@@ -252,7 +254,6 @@ const validateForm = () => {
         setSuccess(firstCompany);
     }
 
-    // Validate first experience dates
     if (!fromDate1.value) {
         setError(fromDate1, 'From date required');
         valid = false;
@@ -267,7 +268,7 @@ const validateForm = () => {
         setSuccess(toDate1);
     }
 
-    // Check if from date is before to date
+   
     if (fromDate1.value && toDate1.value) {
         const from = new Date(fromDate1.value);
         const to = new Date(toDate1.value);
@@ -280,7 +281,7 @@ const validateForm = () => {
         }
     }
 
-    // Validate second company if filled (optional)
+    
     if (companies[1]) {
         const secondCompanyVal = companies[1].value.trim();
         if (secondCompanyVal && !isAlpha(secondCompanyVal)) {
@@ -289,7 +290,7 @@ const validateForm = () => {
         } else if (secondCompanyVal) {
             setSuccess(companies[1]);
 
-            // Validate second experience dates if company is filled
+            
             const addExpSection = document.querySelector('.add-Exp');
             if (addExpSection && addExpSection.style.display === 'flex') {
                 const dateInputs2 = addExpSection.querySelectorAll('input[type="date"]');
@@ -315,7 +316,6 @@ const validateForm = () => {
 SaveWorker.addEventListener('click', (e) => {
     e.preventDefault();
     if (validateForm()) {
-        // Get form values
         const fName = document.getElementById('fName').value.trim();
         const lName = document.getElementById('lName').value.trim();
         const email = document.getElementById('email').value.trim();
@@ -323,7 +323,7 @@ SaveWorker.addEventListener('click', (e) => {
         const role = document.getElementById('role').value;
         const imageUrl = document.getElementById('imageUrlInput').value.trim() || 'images/Default_pfp.jpg';
 
-        // Collect all experiences
+        
         const experiences = [];
 
         // Get first experience
@@ -357,7 +357,6 @@ SaveWorker.addEventListener('click', (e) => {
             }
         }
 
-        // Create worker object
         const worker = {
             firstName: fName,
             lastName: lName,
