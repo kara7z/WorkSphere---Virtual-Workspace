@@ -60,7 +60,7 @@ function displayWorkers() {
             <img id="Profile-Img" src="${worker.imageUrl}" alt="Profile img">
             <div class="Profile">
                 <div class="Profile-Text">
-                    <div style="display: flex;gap:.2rem;">
+                    <div style="display: flex;align-items:center;gap:.2rem;">
                         <span class="left-text">USERNAME:</span>
                         <h4>${worker.firstName}</h4>
                         <h4>${worker.lastName}</h4>
