@@ -615,7 +615,6 @@ function validateForm() {
     
     return isValid;
 }
-
 //..Save Worker
 SaveWorker.addEventListener('click', (e) => {
     e.preventDefault();
