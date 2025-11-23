@@ -147,6 +147,7 @@ The core of WorkSphere is its strict adherence to company placement rules. The J
 ## Deployment
 
 **Live Site**: [https://work-sphere-virtual-workspace-nine.vercel.app/](https://work-sphere-virtual-workspace-nine.vercel.app/)
+
 **GitHub Repository**: [https://github.com/kara7z/WorkSphere---Virtual-Workspace](https://github.com/kara7z/WorkSphere---Virtual-Workspace)
 
 Hosted on **Vercel**.
