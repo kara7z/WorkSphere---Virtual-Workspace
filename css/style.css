@@ -145,12 +145,35 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     padding: 0.5rem;
     cursor: pointer;
+    position: relative;
+}
+
+.room-capacity {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    z-index: 10;
+}
+
+.room-full {
+    border-color: #e74c3c !important;
+    box-shadow: 0 0 10px rgba(231, 76, 60, 0.5);
+}
+
+.room-full .add-list-img {
+    opacity: 0.3;
+    cursor: not-allowed;
 }
 
 .Workspace>div:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    /* cursor: pointer; */
 }
 
 .Workspace>div.active {
@@ -159,10 +182,8 @@
 }
 
 .Selected {
-    /* border: 3px solid white; */
     box-shadow: 0 0 0 3px #3498db;
 }
-
 
 .sidebar {
     display: flex;
@@ -178,7 +199,7 @@
     display: flex;
     gap: .2rem;
     font-weight: normal;
-
+    color: white;
 }
 
 .Profile-Text h4 {
@@ -190,6 +211,111 @@
     font-size: 2rem;
     color: white;
     display: flex;
+}
+
+.worker-detail-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border: 3px solid black;
+    border-radius: 12px;
+    padding: 20px;
+    z-index: 1000;
+    display: none;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    color: black;
+}
+
+.worker-detail-modal.show {
+    display: block;
+}
+
+.worker-detail-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #eee;
+}
+
+.worker-detail-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #333;
+}
+
+.worker-detail-info h2 {
+    margin: 0;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.worker-detail-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.detail-label {
+    font-weight: bold;
+    color: #333;
+}
+
+.experience-item {
+    background: white;
+    padding: 10px;
+    border-radius: 6px;
+    margin: 5px 0;
+    border: 1px solid #333;
+}
+
+.close-detail-btn {
+    background: black;
+    color: white;
+    border: none;
+    padding: 6px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 15px;
+    width: 100%;
+    font-size: 1.2rem;
+}
+
+.close-detail-btn:hover {
+    opacity: .9;
+}
+
+.Workspace .assigned-worker-img {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    border: black solid 2px;
+    transition: transform 0.2s ease;
+}
+
+.Workspace .assigned-worker-img:hover {
+    transform: scale(1.1);
+    border: 2px solid white;
 }
 
 #previewImage {
@@ -204,7 +330,6 @@
     object-position: center;
     border-radius: 50%;
     border: black solid 2px;
-
 }
 
 .Passegers-list {
@@ -218,8 +343,6 @@
     color: #666;
     background-color: black;
     padding: .5rem;
-
-
 }
 
 .passenger-profile {
@@ -248,13 +371,13 @@
     flex-direction: column;
     font-size: 1rem;
     color: white;
-
 }
 
 .Profile-Role {
     display: flex;
     gap: .3rem;
-align-items:center;
+    align-items: center;
+    color: white;
 }
 
 #removeBtn {
@@ -266,7 +389,6 @@ align-items:center;
 
 #removeBtn:hover {
     text-decoration: underline;
-
 }
 
 .role {
@@ -280,6 +402,9 @@ align-items:center;
 .add-list-img {
     width: 2rem;
     cursor: pointer;
+    position: absolute;
+    bottom: .5rem;
+    z-index: 22;
 }
 
 .add-list-img:active {
@@ -311,7 +436,54 @@ align-items:center;
     overflow: auto;
     z-index: 999;
     display: none;
+}
 
+.Asign-Passagers {
+    padding: 1.2rem;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: black 2px solid;
+    border-radius: 10px;
+    display: none;
+    flex-direction: column;
+    gap: .5rem;
+    width: 430px;
+    height: 500px;
+    overflow: auto;
+    z-index: 999;
+    align-items: center;
+}
+
+.Asign-title {
+    font-size: 2rem;
+    padding: .2rem 1rem;
+    background-color: #e0e0e0;
+    width: 100%;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.close-Btn {
+    width: 100%;
+    border: none;
+    padding: .2rem;
+    color: white;
+    font-size: 1.5rem;
+    background-color: black;
+    border-radius: 8px;
+    border: black solid 1px;
+    cursor: pointer;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    bottom: 0;
+}
+
+.close-Btn:hover {
+    opacity: .9;
 }
 
 .Profile-Drop {
@@ -328,6 +500,43 @@ align-items:center;
     padding: .5rem 0;
 }
 
+.Qualified-Workers {
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    text-align: center;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: .5rem;
+    overflow-y: auto;
+    padding: 1rem;
+    max-height: 520px;
+}
+
+.user-Qualified {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    background-color: blue;
+    padding: .5rem;
+    width: 100%;
+    max-width: 370px;
+    border-radius: 8px;
+    position: relative;
+}
+
+#asign {
+    margin-left: auto;
+    cursor: pointer
+}
+
+#asign:hover {
+    text-decoration: underline;
+}
+
 .backdrop {
     position: fixed;
     inset: 0;
@@ -336,7 +545,6 @@ align-items:center;
     display: none;
     pointer-events: all;
 }
-
 
 #Add-Form select,
 #Add-Form button,
@@ -408,7 +616,6 @@ align-items:center;
     display: flex;
     align-items: center;
     gap: .2rem;
-
 }
 
 /* Tablet */
@@ -440,7 +647,6 @@ align-items:center;
         flex: 1;
         margin: 0 0.5rem;
     }
-
 }
 
 /* Mobile */
@@ -490,6 +696,12 @@ align-items:center;
         grid-row: 4 / 5;
     }
 
+    #Archives .add-list-img {
+        width: 2rem;
+        right: .5rem;
+        bottom: auto;
+    }
+
     .Workspace>div {
         font-size: 1.3rem;
     }
@@ -506,7 +718,6 @@ align-items:center;
 
     .Passegers-list {
         width: 100%;
-        /* height: px; */
     }
 
     #Add-Form {
@@ -525,7 +736,6 @@ align-items:center;
         height: 500px;
     }
 
-
     .FirstName {
         display: flex;
         flex-direction: column;
@@ -541,20 +751,24 @@ align-items:center;
     .Role-Select select {
         width: 14.95rem;
     }
-
 }
 
 /* Small Mobile */
 @media (max-width: 480px) {
     .add-list-img {
         width: 2rem;
+        right: .5rem;
+        bottom: auto;
     }
+
     #Profile-Img {
-        margin:auto;
+        margin: auto;
     }
-    #removeBtn{
-        margin: auto; 
+
+    #removeBtn {
+        margin: auto;
     }
+
     .Workspace {
         grid-template-columns: 1fr;
         grid-template-rows: repeat(6, 1fr);
@@ -567,42 +781,36 @@ align-items:center;
         grid-column: 1 / 2;
         grid-row: 1 / 2;
         gap: .5rem;
-
     }
 
     #Server {
         grid-column: 1 / 2;
         grid-row: 2 / 3;
         gap: .5rem;
-
     }
 
     #Conference {
         grid-column: 1 / 2;
         grid-row: 3 / 4;
         gap: .5rem;
-
     }
 
     #Reception {
         grid-column: 1 / 2;
         grid-row: 4 / 5;
         gap: .5rem;
-
     }
 
     #Security {
         grid-column: 1 / 2;
         grid-row: 5 / 6;
         gap: .5rem;
-
     }
 
     #Archives {
         grid-column: 1 / 2;
         grid-row: 6 / 7;
         gap: .5rem;
-
     }
 
     .Workspace>div {
